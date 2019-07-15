@@ -19,7 +19,7 @@ public class MarkSheet {
 			System.out.println("Enter grade for "+(i+1)+" student ");
 			grad=in.nextDouble();
 			if(grad>=0&&grad<=100)
-				grade[i]=Math.round(grad * 100.0) / 100.0;
+				gradeArray[i]=Math.round(grad * 100.0) / 100.0;    //for rounding off up to 2 decimal point
 			else {
 				System.out.println("grade out of limit.. try again");
 				i--;
@@ -39,7 +39,7 @@ public class MarkSheet {
 			sum+=gradeArray[i];
 		}
 		avg=sum/numberOfStudents;
-		return Math.round(avg * 100.0) / 100.0;
+		return Math.round(avg * 100.0) / 100.0;    //for rounding off up to 2 decimal point
 	}
 	
 	/**
@@ -79,11 +79,11 @@ public class MarkSheet {
 		double passPercentage=0;
 		int count=0;
 		for(int i=0;i<numberOfStudents;i++) {
-			if(grade[i]>40)
+			if(gradeArray[i]>40)
 				count++;
 		}
 		passPercentage=(count*100)/numberOfStudents;
-		return Math.round(passPercentage * 100.0) / 100.0;
+		return Math.round(passPercentage * 100.0) / 100.0;     //for rounding off up to 2 decimal point
 	}
 
 

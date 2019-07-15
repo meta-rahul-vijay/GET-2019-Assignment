@@ -4,12 +4,12 @@ public class Driver {
 
 	public static void main(String[] args) {
 		
-		MarkSheet m=new MarkSheet();
-		m.input();
-		System.out.println("Average of grades : "+m.averageOfGrades());
-		System.out.println("Maximum of grades : "+m.maxOfGrades());
-		System.out.println("Minimum of grades : "+m.minOfGrades());
-		System.out.println("Percentage of students passes : "+m.passPercentage());
+		MarkSheet marksheetObject=new MarkSheet();
+		marksheetObject.input();
+		System.out.println("Average of grades : "+marksheetObject.averageOfGrades());
+		System.out.println("Maximum of grades : "+marksheetObject.maxOfGrades());
+		System.out.println("Minimum of grades : "+marksheetObject.minOfGrades());
+		System.out.println("Percentage of students passes : "+marksheetObject.passPercentage());
 	}
 
 }
