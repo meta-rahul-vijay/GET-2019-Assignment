@@ -28,9 +28,10 @@ public class ArrOperation {
 					maxLength = tempLength;
 					tempLength = 0;
 					pivot = indexI;
-				} else {
+				} else if(pivot!=indexI){
 					tempLength = 0;
 					pivot = indexI;
+					indexJ++;
 				}
 				if (tempLength > maxLength)
 					maxLength = tempLength;
