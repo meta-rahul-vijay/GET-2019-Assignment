@@ -12,7 +12,8 @@ import org.junit.Test;
   MaxMirrorTest.class,
   CountClumpsTest.class,
   FixXYTest.class,
-  SplitTest.class
+  SplitTest.class,
+  ArrOperationNegativeTest.class
 })
 
 public class ArrOPerationTestSuites {

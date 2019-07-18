@@ -35,13 +35,12 @@ public class SplitTest {
 				{ 3, new int[] {1,1,1,2,1}},
 				{ -1, new int[] { 2,1,1,2,1} },
 				{ 1, new int[] { 10,10 } },
-				{ 4, new int[] { 10,10,2,2 } },        //negative case
-				{ 2, new int[] {  } },                 //throw empty array error
 		});
 	}
 
 	@Test
-	public void SplitTest() {		assertEquals(expectedResult, arrOperations.split(inputArray));    //check if actual is equal to expected
+	public void SplitTest() {		
+		assertEquals(expectedResult, arrOperations.split(inputArray));    //check if actual is equal to expected
 
 	}
 
