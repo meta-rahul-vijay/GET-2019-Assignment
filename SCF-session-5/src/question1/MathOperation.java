@@ -30,7 +30,7 @@ public class MathOperation {
 		if (common % firstNumber == 0 && common % secondNumber == 0)
 			return common;
 
-		common=2*common;
+		common++;
 		return FindLCM(firstNumber, secondNumber, common);
 	}
 
