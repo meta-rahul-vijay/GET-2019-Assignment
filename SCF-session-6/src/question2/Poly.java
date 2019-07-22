@@ -3,7 +3,7 @@ package question2;
 public final class Poly {
 
 	final int[][] polynomial;    
-    //constructor to initialize polynomial with input array
+        //constructor to initialize polynomial with input array
 	Poly(int[][] input) {          
 		if (input.length == 0)
 			throw new AssertionError("input can't be empty");
