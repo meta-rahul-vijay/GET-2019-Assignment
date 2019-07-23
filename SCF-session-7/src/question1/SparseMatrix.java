@@ -31,12 +31,9 @@ public final class SparseMatrix {
 					}
 					indexTwo++;
 				} catch (Exception e) {
-					System.out
-							.println("--------------------------------------------------------");
-					System.out
-							.println("Warning : Please enter only integer value !! Try Again");
-					System.out
-							.println("--------------------------------------------------------");
+					System.out.println("--------------------------------------------------------");
+					System.out.println("Warning : Please enter only integer value !! Try Again");
+					System.out.println("--------------------------------------------------------");
 				}
 			}
 		}
@@ -67,8 +64,7 @@ public final class SparseMatrix {
 
 		ArrayList<Node> transposeMatrix = new ArrayList<Node>();
 		for (int i = 0; i < sparseTriplet.size(); i++) {
-			Node node = new Node(sparseTriplet.get(i).col,
-					sparseTriplet.get(i).row, sparseTriplet.get(i).value);
+			Node node = new Node(sparseTriplet.get(i).col, sparseTriplet.get(i).row, sparseTriplet.get(i).value);
 			transposeMatrix.add(node);
 		}
 
@@ -121,16 +117,12 @@ public final class SparseMatrix {
 		ArrayList<Node> addList = new ArrayList<Node>();
 
 		if (this.row != ObjTwo.row || this.col != ObjTwo.col) {
-			System.out
-					.println("Matrices Can't add because row and column not similar");
+			System.out.println("Matrices Can't add because row and column not similar");
 		} else {
 
 			for (int indexRow = 0; indexRow < this.row; indexRow++) {
 				for (int indexCol = 0; indexCol < this.col; indexCol++) {
-					int value = valueAtRowCol(indexRow, indexCol,
-							this.sparseTriplet)
-							+ valueAtRowCol(indexRow, indexCol,
-									ObjTwo.sparseTriplet);
+					int value = valueAtRowCol(indexRow, indexCol,this.sparseTriplet) + valueAtRowCol(indexRow, indexCol, ObjTwo.sparseTriplet);
 					if (value != 0) {
 						Node node = new Node(indexRow, indexCol, value);
 						addList.add(node);
@@ -153,16 +145,14 @@ public final class SparseMatrix {
 	public int[][] multiplyMatrix(SparseMatrix Obj1, SparseMatrix Obj2) {
 		ArrayList<Node> multiplyList = new ArrayList<Node>();
 		if (Obj1.col != Obj2.row) {
-			System.out
-					.println("Matrices can't multiply because column of first matrix and row of 2nd matrix is not same");
+			System.out.println("Matrices can't multiply because column of first matrix and row of 2nd matrix is not same");
 		} else {
 
 			for (int i = 0; i < Obj1.row; i++) {
 				for (int q = 0; q < Obj2.col; q++) {
 					int sum = 0;
 					for (int j = 0; j < Obj1.col; j++) {
-						sum += Obj1.valueAtRowCol(i, j, Obj1.sparseTriplet)
-								* Obj2.valueAtRowCol(j, q, Obj2.sparseTriplet);
+						sum += Obj1.valueAtRowCol(i, j, Obj1.sparseTriplet) * Obj2.valueAtRowCol(j, q, Obj2.sparseTriplet);
 					}
 
 					Node node = new Node(i, q, sum);
