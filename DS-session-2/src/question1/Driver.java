@@ -16,7 +16,19 @@ public class Driver {
 		String expression,postfix;
 		System.out.println("Enter the expression.. ");
 		expression=inputObj.nextLine();
-		postfix=evaluate.infixToPostfix(expression);
+		String newExpression="";
+		for(int i=0;i<expression.length();i++){
+			newExpression+=expression.charAt(i);
+			if(EvaluateExpression.map.containsKey(Character.toString(expression.charAt(i)))){
+				newExpression+=" ";
+			}
+			if(i<expression.length()-1&&EvaluateExpression.map.containsKey(Character.toString(expression.charAt(i+1)))){
+				newExpression+=" ";
+			}
+		       
+		}
+		System.out.println(newExpression);
+		postfix=evaluate.infixToPostfix(newExpression);
 		System.out.println("postfix expression is : "+postfix);
 		System.out.println("Result is : "+evaluate.evaluatePostfix(postfix));
 	}
