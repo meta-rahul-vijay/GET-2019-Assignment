@@ -10,8 +10,11 @@ import java.util.Scanner;
  */
 public class MainDriver {
 	public static void main(String[] args){
-		Queue queueObj = new ArrayQueue(5);
+		
 		Scanner inputObj = new Scanner(System.in);
+		System.out.println("Enter the capacity of Queue you want : ");
+		int capacity=inputObj.nextInt();
+		Queue queueObj = new ArrayQueue(capacity);
 		
 		int choice = 0;
 		do{
