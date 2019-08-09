@@ -16,7 +16,7 @@ public class MainDriver {
 		String moreInput="";
 		int choice = 0;
 		do{
-			System.out.println("Enter Your Choice\n1.Add an Employee\n2.Sort\n3.Display Employee List\n4.Display sorted List\n5.Exit");
+			System.out.println("Enter Your Choice\n1.Add an Employee\n2.Sort\n3.Display sorted List\n4.Exit");
 			try{
 				choice = inputObj.nextInt();
 				switch(choice){
@@ -41,22 +41,14 @@ public class MainDriver {
 					System.out.println("List Sorted successfully \n");
 					break;
 				case 3:
-					Employee temp=listObj.linkedListHead;
-					System.out.println("Employee Name\tEmployee Age\tEmployee Salary");
-					while(temp!=null){
-						System.out.println(temp.employeeName+"\t"+temp.employeeAge+"\t"+temp.employeeSalary);
-						temp=temp.next;
-					}
-					break;
-				case 4:
 					Employee tempSorted=listObj.sortedLinkedListHead;
 					System.out.println("Employee Name\tEmployee Age\tEmployee Salary");
 					while(tempSorted!=null){
-						System.out.println(tempSorted.employeeName+"\t"+tempSorted.employeeAge+"\t"+tempSorted.employeeSalary);
+						System.out.println(tempSorted.employeeName+"\t\t"+tempSorted.employeeAge+"\t\t"+tempSorted.employeeSalary);
 						tempSorted=tempSorted.next;
 					}
 					break;
-				case 5:
+				case 4:
 					System.exit(0);
 				default:
 					System.out.println("\nInvalid Choice  !! Try Again\n");
