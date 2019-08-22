@@ -9,14 +9,15 @@ HAVING COUNT(product.category_id) > 1 ;
 
 #Q2.2 Display Count of products as per given price range
 
-# i. 0 - 100
-SELECT COUNT(*) AS count FROM product WHERE price BETWEEN 0 AND 100 ;
-
-# ii. 100 - 500
-SELECT COUNT(*) AS count FROM product WHERE price BETWEEN 100 AND 500 ;
-
-# iii. above 500
-SELECT COUNT(*) AS count FROM product WHERE price > 500 ;
+SELECT pr.price_range,COUNT(*) AS product_count
+FROM(SELECT CASE
+               WHEN price>0 AND price<=50 then '0-50'
+               WHEN price>50 AND price<=100 then '0-100'
+               WHEN price>100 AND price<=500 then '101-500'
+               ELSE 'Above 500'
+           END AS price_range
+    FROM product) pr
+GROUP BY pr.price_range;
 
 #Q2.3 Display the Categories along with number of products under each category
 
