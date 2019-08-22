@@ -7,37 +7,31 @@ drop table order_details;
 drop table cart;
 drop table shopper_address;
 drop table images;
-drop table user_details;
 drop table product;
 drop table category;
 */
 
 -- 1.a create tables
  
-CREATE TABLE user_details (
-user_id INT NOT NULL AUTO_INCREMENT,
-password varchar(12) NOT NULL,
-PRIMARY KEY (user_id)
-);
-
 CREATE TABLE shopper (
-shopper_id INT NOT NULL,
+shopper_id INT NOT NULL ,
 shopper_name varchar(20) NOT NULL,
-mobile BIGINT (10) NOT NULL,
-FOREIGN KEY (shopper_id) REFERENCES user_details(user_id)
+mobile BIGINT (10) NOT NULL ,
+email VARCHAR(50) NOT NULL ,
+PRIMARY KEY(shopper_id)
 );
 
 CREATE TABLE admin_details (
 admin_id INT ,
 admin_name VARCHAR(20) NOT NULL ,
 email VARCHAR(30) NOT NULL ,
-FOREIGN KEY (admin_id) REFERENCES user_details(user_id)
+PRIMARY KEY(admin_id)
 );
 
 CREATE TABLE shopper_address (
 shopper_id INT,
 address VARCHAR(50) NOT NULL,
-FOREIGN KEY (shopper_id) REFERENCES user_details(user_id)
+FOREIGN KEY (shopper_id) REFERENCES shopper(shopper_id)
 );
 
 CREATE TABLE category(
@@ -53,8 +47,9 @@ product_id INT AUTO_INCREMENT,
 product_name VARCHAR(20) NOT NULL ,
 price FLOAT(2) NOT NULL,
 stock INT NOT NULL ,
-date_added DATETIME ,
+date_added DATETIME NOT NULL ,
 category_id INT,
+discount_percent INT NOT NULL DEFAULT 0,
 isactive BOOLEAN ,
 PRIMARY KEY (product_id) ,
 FOREIGN KEY (category_id) REFERENCES category(category_id)
@@ -67,7 +62,7 @@ quantity INT NOT NULL ,
 price FLOAT NOT NULL ,
 date_added DATETIME NOT NULL,
 item_status VARCHAR(10) ,
-FOREIGN KEY (cart_id) REFERENCES user_details(user_id) ,
+FOREIGN KEY (cart_id) REFERENCES shopper(shopper_id) ,
 FOREIGN KEY (product_id) REFERENCES product(product_id)
 );
 
@@ -95,7 +90,7 @@ show tables ;
 -- 1.c remove table product
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE product ;
-
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- 1.d create product table again
 CREATE TABLE product(
@@ -108,5 +103,3 @@ category_id INT,
 PRIMARY KEY (product_id) ,
 FOREIGN KEY (category_id) REFERENCES category(category_id)
 );
-
-

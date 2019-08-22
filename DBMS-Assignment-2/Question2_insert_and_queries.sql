@@ -2,21 +2,6 @@ use store_front;
 
 -- 2.a Insert sample data in StoreFront tables by using SQL files.
 
-/*
-SET FOREIGN_KEY_CHECKS = 0;
-TRUNCATE TABLE user_details;
-*/
-
--- insert data in user
-
-INSERT INTO user_details(password) VALUES
-('user1'),
-('user2'),
-('user3'),
-('user4'),
-('user5'),
-('user6'),
-('user7');
 
 -- insert data in admin
 
@@ -25,12 +10,12 @@ INSERT INTO admin_details VALUES (1,'admin1','admin@gmail.com');
 -- insert data in shopper
 
 INSERT INTO shopper VALUES 
-(2,'mahendar',1234567890),
-(3,'ajay',1234567890) ,
-(4,'aman',1234567890) ,
-(5,'anmol',1234567890) ,
-(6,'vinod',1234567890) ,
-(7,'shobit',1234567890);
+(2,'mahendar',1234567890,'mahendar@gmail.com'),
+(3,'ajay',1234567890,'ajay@gmail.com') ,
+(4,'aman',1234567890,'aman@gmail.com') ,
+(5,'anmol',1234567890,'anmol@gmail.com') ,
+(6,'vinod',1234567890,'vinod@gmail.com') ,
+(7,'shobit',1234567890,'shobit@gmail.com');
 
 -- insert into shopper_address
 
@@ -138,7 +123,7 @@ INSERT INTO cart(cart_id,product_id,quantity,price,date_added,item_status) VALUE
 (4,9,2,(select price from product where product_id=9)*2,'2019-08-03 13:20:36',null) ,
 (5,10,1,(select price from product where product_id=10)*1,'2019-08-03 14:20:36',null) ,
 (5,12,1,(select price from product where product_id=12)*1,'2019-08-04 08:20:36',null) ,
-(6,1,2,(select price from product where product_id=1)*2,'2019-08-04 10:20:36',null) ,
+(6,1,2,(select price from product where product_id=1)*2,'2019-07-04 10:20:36',null) ,
 (2,13,3,(select price from product where product_id=13)*3,'2019-08-04 11:20:36',null) ,
 (7,14,4,(select price from product where product_id=14)*4,'2019-08-05 19:20:36', null) ;
 
@@ -153,7 +138,7 @@ INSERT INTO order_details(cart_id,address,date_ordered,total_price,order_status)
 (2,'Udaipur','2019-08-01 09:20:36',(select sum(price) from cart where cart_id=2 and item_status is null GROUP BY cart_id ),'placed'),
 (3,'delhi','2019-08-05 10:20:36',(select sum(price) from cart where cart_id=3 and item_status is null GROUP BY cart_id),'placed') ,
 (5,'bikaner','2019-08-06 08:20:36',(select sum(price) from cart  where cart_id=5 and item_status is null GROUP BY cart_id),'placed'),
-(6,'jaipur','2019-08-06 11:20:36',(select sum(price) from cart  where cart_id=6 and item_status is null GROUP BY cart_id),'placed'),
+(6,'jaipur','2019-07-06 11:20:36',(select sum(price) from cart  where cart_id=6 and item_status is null GROUP BY cart_id),'placed'),
 (7,'udaipur','2019-08-06 12:20:36',(select sum(price) from cart  where cart_id=7 and item_status is null GROUP BY cart_id),'placed');
 
 -- update status of cart
@@ -196,7 +181,7 @@ FROM category ORDER BY parent_category,category_name;
 -- 2.e Display Id, Title, Parent Category Title of all the leaf Categories
 
 SELECT category_id ,category_name ,parent_category FROM category WHERE category_id NOT IN
-(SELECT parent_id FROM category);
+(SELECT parent_id FROM category WHERE parent_id IS NOT NULL);
 
 
 -- 2.f Display Product Title, Price & Description which falls into particular category Title (i.e. “Mobile”)
