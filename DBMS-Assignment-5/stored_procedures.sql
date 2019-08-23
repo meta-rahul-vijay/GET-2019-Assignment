@@ -5,6 +5,11 @@ USE store_front;
 * of that user which are in shipped state. Orders should be sorted by 
 * order date column in chronological order.
 */
+
+DROP PROCEDURE shipped_State;
+DROP PROCEDURE delete_product;
+DROP PROCEDURE category_title;
+
 DELIMITER $$
 CREATE PROCEDURE shipped_State(shopperId INT, orderStatus VARCHAR(20))
    BEGIN
@@ -28,8 +33,8 @@ BEGIN
      SET FOREIGN_KEY_CHECKS = 0;
      DELETE FROM product 
      WHERE product.product_id NOT IN(SELECT c.product_id
-     FROM cart c
-     WHERE c.item_status IS NOT NULL AND DATEDIFF(CURDATE(),o.date) <= 365);
+     FROM cart c,order_details o
+     WHERE  c.cart_id=o.order_id AND c.item_status IS NOT NULL AND DATEDIFF(CURDATE(),o.date_ordered) <= 365);
 END $$;
 DELIMITER ;
 
@@ -54,6 +59,3 @@ DELIMITER ;
 
 CALL category_title();
 
-
-
-               

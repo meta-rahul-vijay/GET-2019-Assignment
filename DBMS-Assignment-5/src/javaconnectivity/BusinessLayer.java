@@ -44,14 +44,15 @@ public class BusinessLayer {
 	 * @param dl is object  of DataLayer
 	 * @throws SQLException
 	 */
-	public void insertIntoImage(DataLayer dl) throws SQLException{
-		
-		dl.setStatement("INSERT INTO images VALUES(2,?)");
+	public void insertIntoImage(DataLayer dl,int pId) throws SQLException{
+
+		dl.setStatement("INSERT INTO images VALUES(?,?)");
 
 		for(int i=1; i <= 5; i++){
-		dl.getStatement().setString(1,"newImage"+Integer.toString(i));
-		dl.getStatement().addBatch();
-		dl.getStatement().clearParameters();
+			dl.getStatement().setInt(1,pId);
+			dl.getStatement().setString(2,"newImage"+Integer.toString(i));
+			dl.getStatement().addBatch();
+			dl.getStatement().clearParameters();
 		}
 		dl.getStatement().executeBatch();
 	}
