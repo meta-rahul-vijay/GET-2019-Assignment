@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        td {
+            padding: 15px;
+        }
+
+        select {
+            width: 175px;
+        }
+    </style>
+
+    <title>Metacube Parking System</title>
+    <script type="text/javascript" src="script.js"></script>
+</head>
+
+<body>
+    <div id="main-head">
+        <h1 align="center">Metacube Parking System</h1><br />
+    </div>
+    <span align="center" id=emp-reg-msg></span>
+    <div id="emp-reg" align="center">
+        <form>
+            <h2 align="center">Register Employee</h2><br />
+            <table align="center">
+                <tr>
+                    <td>Full Name</td>
+                    <td><input type="text" placeholder="enter your name" name="ename"><br><label name="enamev"></label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td><input type="radio" name="egender" value="Male">&nbspMale&nbsp&nbsp<input type="radio"
+                            name="egender" value="Female">&nbspFemale<br><label name="egenderv"></label></td>
+                </tr>
+                <tr>
+                    <td>Email Id</td>
+                    <td><input type="text" placeholder="enter your email" name="eemail"><br><label
+                            name="eemailv"></label></td>
+                </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="Password" placeholder="enter password" name="epass"><br><label
+                            name="epassv"></label></td>
+                </tr>
+                <tr>
+                    <td>Confirm Password</td>
+                    <td><input type="Password" placeholder="re enter password " name="ecnfrmpass"><br><label
+                            name="ecnfrmpassv"></label></td>
+                </tr>
+                <tr>
+                    <td>Contact Number</td>
+                    <td><input type="text" placeholder="enter your number" name="ecnumber"><br><label
+                            name="ecnumberv"></label></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input type="button" value="Register Employee"
+                            onclick="empRegister()"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <br />
+
+    <span id=veh-reg-msg align="center"></span>
+    <div id="veh-reg" align="center" style="display: none">
+        <form>
+            <h2 align="center">Register Vehicle</h2><br />
+            <table align="center">
+                <tr>
+                    <td>Vehicle Name</td>
+                    <td><input type="text" placeholder="enter vehicle name" name="vname"><br /><label
+                            name="vnamev"></label></td>
+                </tr>
+                <tr>
+                    <td>Vehicle type</td>
+                    <td><select width="40" id="selected-type" name="vtype">
+                            <option value="" selected disabled hidden>Choose here</option>
+                            <option value="Cycle">Cycle</option>
+                            <option value="Motocycle">Motocycle</option>
+                            <option value="Car">Car</option>
+                        </select><br><label name="vtypev"></label></td>
+                </tr>
+                <tr>
+                    <td>Vehicle number</td>
+                    <td><input type="text" placeholder="enter vehicle number" name="vnumber"><br><label
+                            name="vnumberv"></label></td>
+                </tr>
+                <tr>
+                    <td>Employee Id</td>
+                    <td><input type="text" placeholder="enter your emp id" name="eid" value="101"><br><label
+                            name="eidv"></label></td>
+                </tr>
+                <tr>
+                    <td>Identification</td>
+                    <td><textarea placeholder="enter vehicle Identification" rows="3"
+                            name="videntity"></textarea><br><label name="videntityv"></label></td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="center"><input type="button" value="Register Vehicle"
+                            onclick="vehRegister()"></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <br />
+
+    <div style="margin-left: 42%;display: none" id="pricing">
+        <h2>Choose your plan</h1><br>
+            <label id="veh-type"></label><br />
+            Select currency&nbsp;&nbsp;
+            <select id="currency" onchange="showPrice()">
+                <option value="" selected disabled hidden>Choose here</option>
+                <option value="INR">INR</option>
+                <option value="USD">USD</option>
+                <option value="YEN">YEN</option>
+            </select><br><label name="currencyv"></label><br /><br />
+            <div align="left" style="display: none" id="plans"><br><label name="plansv"></label>
+                <input type="radio" name="passtype">&nbsp;Daily - <label id="daily"></label><br />
+                <input type="radio" name="passtype">&nbsp;Monthly - <label id="monthly"></label><br />
+                <input type="radio" name="passtype">&nbsp;Yearly - <label id="yearly"></label><br><br />
+            </div>
+            <input style="margin-left: 10%" type="button" value="Submit Plan" onclick="setPricing()">
+    </div>
+
+
+
+
+</body>
+
+</html>
+
+<!--Name
+Type
+Vehicle Number
+Employee Id
+Identification (Textarea)
+
+-->
