@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    
+    <script src="studentValidation.js"></script>
+    <title>Student Details</title>   
+    <link rel='stylesheet' type='text/css' href='/EAD-session-3/navigation.css'>
+</head>
+<body >
+    <div align= center>
+    
+    	<ul>
+  			<li><a class="active" href="index.html">Home</a></li>
+ 			<li><a href="student_form.html">Add Student</a></li>
+		  	<li><a href="ShowStudentServlet">See Students</a></li>
+		  	<li><a href="search_student.html">Search Student</a></li>
+		</ul>
+       <h1>Student Details</h1> <hr>
+        
+        
+        <form action="addStudent"  onsubmit="return studentValidation()" method="GET"  >
+            <table  >
+                <tr>
+                    <td>First Name</td>
+                    <td><input type="text" name="fname" placeholder="first name" id="fname" >
+                        <br> <span id="efname"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td><input type="text" name="lname" id="lname" value="" placeholder="last name" >
+                        <br> <span id="elname"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Father Name</td>
+                    <td><input type="text" name="father_name" id="fatherName" value="" placeholder="father name" >
+                        <br> <span id="efatherName"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" name="email" id="email" value="" placeholder="email">
+                        <br> <span id="eemail"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Class</td>
+                    <td><input type="number" name="class" id="classNo" min="1" max="12" style="width : 175px" placeholder="enter class">
+                        <br> <span id="eclassNo"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td><input type="number" name="age" id="age" min="3" max="35" style="width : 175px " placeholder="enter age">
+                        <br> <span id="eage"></span>
+                    </td>
+                </tr>              
+            </table>
+            <br>
+            <input type="submit"  value="Submit" id="submit">
+        </form>
+    </div>
+</body>
+</html>

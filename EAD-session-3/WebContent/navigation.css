@@ -1,0 +1,64 @@
+
+		body{
+		background-color: CORNSILK;
+		}
+        td{
+            padding: 22px;
+            font-size:20px;
+        }
+        span{
+            width: 100%;
+            font-size: 15px;
+            color: red;
+        }
+        
+        ul {
+			  list-style-type: none;
+			  margin: 0;
+			  padding: 0;
+			  overflow: hidden;
+			  background-color: #333;
+			}
+
+		li {
+		  float: left;
+		  width : 25%;
+		  font-size : 150%;
+		}
+		
+		li a {
+		  display: block;
+		  color: white;
+		  text-align: center;
+		  padding: 14px 16px;
+		  text-decoration: none;
+		}
+		
+		li a:hover:not(.active) {
+		  background-color: #111;
+		}
+		
+		.active {
+		  background-color: #4CAF50;
+		}
+		
+		input#submit {
+		   	border-radius: 12px;
+		   	background-color: #333;
+		    color: #ffffff;
+		    padding: 10px 20px;
+		  	font-size : 20;
+		}
+		input#submit:hover {
+		   	border-radius: 12px;
+		   	background-color: #111;
+		    color: #ffffff;
+		    padding: 10px 20px;
+		  	font-size : 20;
+		}
+		input[type=text]{
+  		border-radius:10px;
+  		height:25px;
+		}
+		
+	
