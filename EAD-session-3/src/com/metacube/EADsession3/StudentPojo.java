@@ -1,5 +1,10 @@
 package com.metacube.EADsession3;
 
+/**
+ * POJO class for student
+ * @author Mahendar Singh
+ *
+ */
 public class StudentPojo {
 
 	private String firstName;

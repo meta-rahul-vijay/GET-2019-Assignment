@@ -1,13 +1,29 @@
 package com.metacube.EADsession3;
 
-
 import java.sql.*;
 import java.util.*;
+/**
+ * class containing methods for database operations
+ * @author Mahendar Singh
+ *
+ */
 public class BusinessLayer {
 
-	public void insertIntoStudent(DataLayer dl,StudentPojo student) throws SQLException{
+	//data layer object to make connection
+	static DataLayer dl=new DataLayer();
 
+	static {
+		dl.setDriver(Variables.driverString) ;
+		dl.setConnection(Variables.connectionString,Variables.user,Variables.password);
+	}
 
+	/**
+	 * method to add student in database
+	 * @param student
+	 * @throws SQLException
+	 */
+	public void insertIntoStudent(StudentPojo student) throws SQLException{
+		
 		PreparedStatement insertStmt =dl.getConnection().prepareStatement("INSERT INTO Student_record VALUES(?,?,?,?,?,?)");
 
 		insertStmt.setString(1,student.getFirstName());
@@ -22,7 +38,12 @@ public class BusinessLayer {
 
 	}
 
-	public ArrayList<StudentPojo> getStudent(DataLayer dl) throws SQLException{
+	/**
+	 * method to fetch all students
+	 * @return student list
+	 * @throws SQLException
+	 */
+	public ArrayList<StudentPojo> getStudent() throws SQLException{
 
 		PreparedStatement selectStmt =dl.getConnection().prepareStatement("SELECT * FROM Student_record");
 		ResultSet rset= selectStmt.executeQuery();
@@ -38,7 +59,13 @@ public class BusinessLayer {
 		return students;
 	}
 
-	public StudentPojo getStudentByEmail(DataLayer dl,String email) throws SQLException{
+	/**
+	 * fetch student details by email
+	 * @param email
+	 * @return student details
+	 * @throws SQLException
+	 */
+	public StudentPojo getStudentByEmail(String email) throws SQLException{
 
 		PreparedStatement selectStmt =dl.getConnection().prepareStatement("SELECT * FROM Student_record WHERE email = ?");
 		selectStmt.setString(1, email);
@@ -48,15 +75,18 @@ public class BusinessLayer {
 
 		StudentPojo student=null;
 		while(rset.next()){
-
 			student =new StudentPojo(rset.getString(1),rset.getString(2),rset.getString(3),rset.getString(4),rset.getInt(5),rset.getInt(6));
-			
 		}
 
 		return student;
 	}
-	
-	public void updateStudent(DataLayer dl,StudentPojo student) throws SQLException{
+
+	/**
+	 * method to update a student details
+	 * @param student containing student details
+	 * @throws SQLException
+	 */
+	public void updateStudent(StudentPojo student) throws SQLException{
 
 		PreparedStatement updateStmt =dl.getConnection().prepareStatement("UPDATE Student_record SET First_name =? ,Last_name = ? ,Father_name = ?, Email = ? ,Class = ? ,Age =? WHERE Email = ?");
 		updateStmt.setString(1, student.getFirstName());
@@ -66,13 +96,19 @@ public class BusinessLayer {
 		updateStmt.setInt(5, student.getStudentClass());
 		updateStmt.setInt(6, student.getAge());
 		updateStmt.setString(7, student.getEmail());
-		
+
 		updateStmt.executeUpdate();
 
 	}
-	
-	
-	public ArrayList<StudentPojo> getStudentName(DataLayer dl,String firstName,String lastName) throws SQLException{
+
+	/**
+	 * fetch student by full name
+	 * @param firstName
+	 * @param lastName
+	 * @return student details
+	 * @throws SQLException
+	 */
+	public ArrayList<StudentPojo> getStudentName(String firstName,String lastName) throws SQLException{
 
 		PreparedStatement selectStmt =dl.getConnection().prepareStatement("SELECT * FROM Student_record WHERE First_name = ? AND Last_name = ? ");
 		selectStmt.setString(1, firstName);
@@ -94,8 +130,14 @@ public class BusinessLayer {
 		viewStmt.execute();
 		return students;
 	}
-	
-	public ArrayList<StudentPojo> getStudentByClass(DataLayer dl,int studentClass) throws SQLException{
+
+	/**
+	 * filter student by class 
+	 * @param studentClass
+	 * @return student list in that class
+	 * @throws SQLException
+	 */
+	public ArrayList<StudentPojo> getStudentByClass(int studentClass) throws SQLException{
 
 		PreparedStatement selectStmt =dl.getConnection().prepareStatement("SELECT * FROM studentDetails WHERE Class = ? ");
 		selectStmt.setInt(1, studentClass);
