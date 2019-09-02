@@ -1,4 +1,3 @@
-
 var employeeName, employeeGender, employeeEmail, employeePassword, employeeMatchPassword, employeeNumber;;
 
 var vehicleName, vehicleType, vehicleNumber, employeeId, vehicleIdentity;
