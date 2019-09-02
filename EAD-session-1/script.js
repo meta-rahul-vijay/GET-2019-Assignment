@@ -18,7 +18,7 @@ function passMatch(){
 
 function empRegister() {
 
-    var invalid =false;
+    var valid =true;
     employeeName = document.getElementsByName("ename")[0].value;
     employeeGender = document.getElementsByName("egender");
     employeeEmail = document.getElementsByName("eemail")[0].value;
@@ -28,42 +28,42 @@ function empRegister() {
 
     if (!(/^[A-z ]{2,}$/.test(employeeName))) {
         document.getElementsByName("enamev")[0].innerHTML = "please enter valid name";
-        invalid=true;
+        valid=false;
     }else{
         document.getElementsByName("enamev")[0].innerHTML = " ";
-        invalid=false;
-
     }
     if (!employeeGender[0].checked && !employeeGender[1].checked) {
         document.getElementsByName("egenderv")[0].innerHTML = "please select gender";
-        invalid=true;
+        valid=false;
     } else{
         document.getElementsByName("egenderv")[0].innerHTML = " ";
-        invalid=false;
     }
     if (!(/^[A-z]+@[A-z]+\.[A-z]+$/.test(employeeEmail))) {
         document.getElementsByName("eemailv")[0].innerHTML = "please enter valid email address";
-        invalid=true;
+        valid=false;
     }else{
         document.getElementsByName("eemailv")[0].innerHTML = " ";
-        invalid=false;
     }
     if (!(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(employeePassword))) {
         document.getElementsByName("epassv")[0].innerHTML = "password should contains Uppercase, Lowercase, Numeric and min 8 characters";
-        invalid=true;
+        valid=false;
     }else{
         document.getElementsByName("epassv")[0].innerHTML = " ";
-        invalid=false;
+    }
+    if (employeePassword != employeeMatchPassword) {
+        document.getElementsByName("ecnfrmpassv")[0].innerHTML = "password doesn't match";
+        valid=false;
+    }else{
+        document.getElementsByName("ecnfrmpassv")[0].innerHTML = "Password Matched";
     }
     if (!(/^[0-9]{10}$/.test(employeeNumber))) {
         document.getElementsByName("ecnumberv")[0].innerHTML = "please enter valid number";
-        invalid=true;
+        valid=false;
     }else{
         document.getElementsByName("ecnumberv")[0].innerHTML = " ";
-        invalid=false;
     }
-    if (invalid == true) {
-        invalid=false;
+    if (valid == false) {
+        valid=true;
         return;
     }
 
