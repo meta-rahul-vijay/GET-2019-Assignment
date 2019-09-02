@@ -1,67 +1,89 @@
 
-var ename, egender, eemail, epass, ecnfrmpass, ccnumber;;
+var employeeName, employeeGender, employeeEmail, employeePassword, employeeMatchPassword, employeeNumber;;
 
-var vname, vtype, vnumber, eid, videntity;
+var vehicleName, vehicleType, vehicleNumber, employeeId, vehicleIdentity;
 
 var currency, plan;
 
-var count = 0;
+function passMatch(){
+
+    employeePassword = document.getElementsByName("epass")[0].value;
+    employeeMatchPassword = document.getElementsByName("ecnfrmpass")[0].value;
+    if (employeePassword != employeeMatchPassword) {
+        document.getElementsByName("ecnfrmpassv")[0].innerHTML = "password doesn't match";
+    }else{
+        document.getElementsByName("ecnfrmpassv")[0].innerHTML = "Password Matched";
+    }
+}
 
 function empRegister() {
 
-    ename = document.getElementsByName("ename")[0].value;
-    egender = document.getElementsByName("egender");
-    eemail = document.getElementsByName("eemail")[0].value;
-    epass = document.getElementsByName("epass")[0].value;
-    ecnfrmpass = document.getElementsByName("ecnfrmpass")[0].value;
-    ecnumber = document.getElementsByName("ecnumber")[0].value;
+    var invalid =false;
+    employeeName = document.getElementsByName("ename")[0].value;
+    employeeGender = document.getElementsByName("egender");
+    employeeEmail = document.getElementsByName("eemail")[0].value;
+    employeePassword = document.getElementsByName("epass")[0].value;
+    employeeMatchPassword = document.getElementsByName("ecnfrmpass")[0].value;
+    employeeNumber = document.getElementsByName("ecnumber")[0].value;
 
-    if (!(/^[A-z ]{2,}$/.test(ename))) {
+    if (!(/^[A-z ]{2,}$/.test(employeeName))) {
         document.getElementsByName("enamev")[0].innerHTML = "please enter valid name";
-        count++;
+        invalid=true;
+    }else{
+        document.getElementsByName("enamev")[0].innerHTML = " ";
+        invalid=false;
+
     }
-    if (!egender[0].checked && !egender[1].checked) {
+    if (!employeeGender[0].checked && !employeeGender[1].checked) {
         document.getElementsByName("egenderv")[0].innerHTML = "please select gender";
-        count++;
+        invalid=true;
+    } else{
+        document.getElementsByName("egenderv")[0].innerHTML = " ";
+        invalid=false;
     }
-    if (!(/^[A-z]+@[A-z]+\.[A-z]+$/.test(eemail))) {
+    if (!(/^[A-z]+@[A-z]+\.[A-z]+$/.test(employeeEmail))) {
         document.getElementsByName("eemailv")[0].innerHTML = "please enter valid email address";
-        count++;
+        invalid=true;
+    }else{
+        document.getElementsByName("eemailv")[0].innerHTML = " ";
+        invalid=false;
     }
-    if (!(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(epass))) {
-        document.getElementsByName("epassv")[0].innerHTML = "please enter strong password";
-        count++;
+    if (!(/(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/.test(employeePassword))) {
+        document.getElementsByName("epassv")[0].innerHTML = "password should contains Uppercase, Lowercase, Numeric and min 8 characters";
+        invalid=true;
+    }else{
+        document.getElementsByName("epassv")[0].innerHTML = " ";
+        invalid=false;
     }
-    if (epass != ecnfrmpass) {
-        document.getElementsByName("ecnfrmpassv")[0].innerHTML = "password doesn't match";
-        count++;
-    }
-    if (!(/^[0-9]{10}$/.test(ecnumber))) {
+    if (!(/^[0-9]{10}$/.test(employeeNumber))) {
         document.getElementsByName("ecnumberv")[0].innerHTML = "please enter valid number";
-        count++;
+        invalid=true;
+    }else{
+        document.getElementsByName("ecnumberv")[0].innerHTML = " ";
+        invalid=false;
     }
-    if (count > 0) {
-        count = 0;
+    if (invalid == true) {
+        invalid=false;
         return;
     }
 
     document.getElementById("emp-reg").innerHTML = "<p style='font-size:180%'>Congratulations you are registered now with employee id 101</p1>";
     document.getElementById("veh-reg").style.display = "block";
-    eid.value = "101";
+    employeeId.value = "101";
 
 
 }
 function vehRegister() {
 
-    vname = document.getElementsByName("vname")[0].value;
-    vtype = document.getElementsByName("vtype")[0].value;
-    vnumber = document.getElementsByName("vnumber")[0].value;
-    eid = document.getElementsByName("eid")[0].value;
-    videntity = document.getElementsByName("videntity")[0].value;
+    vehicleName = document.getElementsByName("vname")[0].value;
+    vehicleType = document.getElementsByName("vtype")[0].value;
+    vehicleNumber = document.getElementsByName("vnumber")[0].value;
+    employeeId = document.getElementsByName("eid")[0].value;
+    vehicleIdentity = document.getElementsByName("videntity")[0].value;
 
     document.getElementById("veh-reg").innerHTML = "<p style='font-size:180%'>Congratulations your vehicle is registered now </p1>";
     document.getElementById("pricing").style.display = "block";
-    document.getElementById("veh-type").innerHTML = "<p style='font-size(130%)'>Pricing available for </h4>" + vtype;
+    document.getElementById("veh-type").innerHTML = "<p style='font-size(130%)'>Pricing available for </h4>" + vehicleType;
 }
 function showPrice() {
 
@@ -69,7 +91,7 @@ function showPrice() {
     plan = document.getElementById("plans").value;
 
     plans.style.display = "block";
-    var v = vtype;
+    var v = vehicleType;
     var daily = 5;
     var monthly = 100;
     var yearly = 500;
